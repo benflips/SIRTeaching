@@ -22,28 +22,29 @@ runSIR <- function(R0, gamma, I0=100, N = 30000000, maxT = 500) {
     Infected <- c(Infected, nextI) 
     Recovered <- c(Recovered, nextR) 
   }
-  out <- cbind(Susceptible, Infected, Recovered)
+  out <- cbind(S=Susceptible, I=Infected, R=Recovered)
 }
 
 plotSIR <- function(SIRmatrix){
-  # first set up the graphics to plot a single graph with smallish margins
-  par(mfrow=c(1,1), mar=c(4,4,2,2))
+  pDat <- data.frame(t=0:(nrow(SIRmatrix)-1), SIRmatrix)
   
-  S <- SIRmatrix[,1]
-  I <- SIRmatrix[,2]
-  R <- SIRmatrix[,3]
-  
-  TotalN <- S[1]+I[1]
-  # generate some values for the time axis (0, 1, 2, ..., MaxT)
-  maxT <- length(S)-1
-  t <- 0:(maxT)
-  
-  plot(S~t, type="l", col="black", ylim=c(0, TotalN), ylab="Number")  # first plot the susceptible population in black
-  lines(I~t, type="l", col="red")  # add a line with the Infected number in red
-  lines(R~t, type="l", col="blue")  # add a line with the Recovered number in blue
-  # Add some labels to the plot to help identify the results
-  text(x=0, y=S[1]/1.1, labels="Susceptible", pos=4, col="black")
-  text(x=maxT, y=R[maxT]/1.1, labels="Recovered", pos=2, col="blue")
-  text(x=maxT, y=TotalN/20, labels="Infected", pos=2, col="red")
+  fig <- plot_ly(pDat, type = "scatter", mode = "lines") %>%
+    add_trace(x=~t, y=~S,
+              name = "Susceptible",
+              hoverinfo = "text+name",
+              text = paste("t=", pDat$t, format(round(pDat$S, 0), big.mark = ","))) %>%
+    add_trace(x=~t, y=~I,
+              name = "Infected",
+              hoverinfo = "text+name",
+              text = paste("t=", pDat$t, format(round(pDat$I, 0), big.mark = ","))) %>%
+    add_trace(x=~t, y=~R,
+              name = "Recovered",
+              hoverinfo = "text+name",
+              text = paste("t=", pDat$t, format(round(pDat$R, 0), big.mark = ","))) %>%
+    layout(yaxis = list(title = list(text = "Number of cases",
+                        fixedrange = TRUE)),
+           xaxis = list(title = list(text = "Time"))) %>%
+    config(displayModeBar = FALSE)
+  fig
 }
 

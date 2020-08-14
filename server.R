@@ -8,13 +8,14 @@
 #
 
 library(shiny)
+library(plotly)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
    
   source("SIRFunctions.R") # load SIR functions
   
-  output$SIRPlot <- renderPlot({
+  output$SIRPlot <- renderPlotly({
     
     plotDat <- runSIR(R0 = input$R0, gamma = input$gamma)
     plotSIR(plotDat)
