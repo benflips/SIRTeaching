@@ -22,4 +22,6 @@ shinyServer(function(input, output) {
     
   })
   
+  output$Totals <- renderTable(matrix(NA, 1, 1))
+  
 })
