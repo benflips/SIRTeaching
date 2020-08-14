@@ -28,7 +28,7 @@ shinyUI(fluidPage(
        sliderInput("gamma",
                    "Recovery rate (gamma)",
                    min = 0,
-                   max = 1,
+                   max = 0.5,
                    value = 0.05,
                    step = 0.01),
        p("Adjust the sliders to see how assumptions about transmission and recovery rates affect outcomes."),
