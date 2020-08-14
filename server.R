@@ -20,11 +20,15 @@ shinyServer(function(input, output) {
   )
   
   output$SIRPlot <- renderPlotly({
-    
     plotSIR(sim())
-    
   })
   
-  output$Totals <- renderTable(matrix(NA, 1, 1))
+  output$Totals <- renderTable({
+    sOut <- sim()[,"S"]
+    maxTime <- length(sOut)
+    nInf <- (sOut[1] - sOut[maxTime])/sOut[1]*100
+    nInf <- paste(format(round(nInf, 1), big.mark = ","), "%")
+    matrix(nInf, 1, 1, dimnames = list(NULL, "Percentage infected"))
+  })
   
 })

@@ -1,4 +1,4 @@
-runSIR <- function(R0, gamma, I0=100, N = 30000000, maxT = 500) {
+runSIR <- function(R0, gamma, I0=100, N = 30000000, maxT = 600) {
   # Simulate the SIR model in discrete time steps
   Infected <- I0  # The initial number of people infected (e.g., overseas arrivals)
   TotalN <- N #30000000  # A total population of 30M (approx. population size of Texas or Australia)

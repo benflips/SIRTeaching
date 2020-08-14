@@ -31,7 +31,7 @@ shinyUI(fluidPage(
                    value = 0.05,
                    step = 0.01),
        p("Adjust the sliders to see how assumptions about transmission and recovery rates affect outcomes."),
-       
+       p("Percentage of the population infected at 600 days."),
        tableOutput("Totals")
     ),
     
