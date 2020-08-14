@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
   
   output$SIRPlot <- renderPlot({
     
-    plotDat <- runSIR(R0 = input$R0)
+    plotDat <- runSIR(R0 = input$R0, gamma = input$gamma)
     plotSIR(plotDat)
     
   })

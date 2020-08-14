@@ -19,10 +19,17 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
        sliderInput("R0",
-                   "R0",
+                   "Infection rate (R0)",
                    min = 0,
-                   max = 13,
-                   value = 2)
+                   max = 5,
+                   value = 2,
+                   step = 0.1),
+       sliderInput("gamma",
+                   "Recovery rate (gamma)",
+                   min = 0,
+                   max = 1,
+                   value = 0.05,
+                   step = 0.01)
     ),
     
     # Show a plot of the generated distribution
