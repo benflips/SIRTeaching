@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
   source("SIRFunctions.R") # load SIR functions
   
   sim <- reactive(
-    runSIR(R0 = input$R0, gamma = input$gamma)
+    runSIR(R0 = input$R0, gamma = input$gamma, I0 = input$init)
   )
   
   output$SIRPlot <- renderPlotly({

@@ -1,4 +1,4 @@
-runSIR <- function(R0, gamma, I0=1, N = 30000000, maxT = 600) {
+runSIR <- function(R0, gamma, I0, N = 100, maxT = 600) {
   # Simulate the SIR model in discrete time steps
   Infected <- I0  # The initial number of people infected (e.g., overseas arrivals)
   TotalN <- N #30000000  # A total population of 30M (approx. population size of Texas or Australia)
@@ -32,16 +32,16 @@ plotSIR <- function(SIRmatrix){
     add_trace(x=~t, y=~S,
               name = "Susceptible",
               hoverinfo = "text+name",
-              text = paste("t=", pDat$t, format(round(pDat$S, 0), big.mark = ","))) %>%
+              text = paste("t=", pDat$t, format(round(pDat$S, 0), big.mark = ","), "%")) %>%
     add_trace(x=~t, y=~I,
               name = "Infected",
               hoverinfo = "text+name",
-              text = paste("t=", pDat$t, format(round(pDat$I, 0), big.mark = ","))) %>%
+              text = paste("t=", pDat$t, format(round(pDat$I, 0), big.mark = ","), "%")) %>%
     add_trace(x=~t, y=~R,
               name = "Recovered",
               hoverinfo = "text+name",
-              text = paste("t=", pDat$t, format(round(pDat$R, 0), big.mark = ","))) %>%
-    layout(yaxis = list(title = list(text = "Number of cases",
+              text = paste("t=", pDat$t, format(round(pDat$R, 0), big.mark = ","), "%")) %>%
+    layout(yaxis = list(title = list(text = "Percent of population",
                         fixedrange = TRUE)),
            xaxis = list(title = list(text = "Days since first case"))) %>%
     config(displayModeBar = FALSE)
