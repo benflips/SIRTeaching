@@ -1,0 +1,63 @@
+---
+title: "Susceptible-Infected-Recovered model exercises"
+author: "Ben Phillips"
+date: "17/08/2020"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## The SIR model
+
+Recall that the SIR model can be written as a system of differential equations:
+
+\begin{align}
+\frac{\partial S}{\partial t} &= -\beta I \frac{S}{N} \\
+\frac{\partial I}{\partial t} &= \beta I \frac{S}{N} - \gamma I \\
+\frac{\partial R}{\partial t} &= \gamma I, 
+\end{align}
+
+where $S$, $I$, and $R$ each vary over time, and $N$ is the total number of people in the population: $N = S+I+R$.  Recall also that the basic reproduction number for the epidemic, $R_0 = \frac{\beta}{\gamma}$.
+
+#### Question 1
+
+Can you draw a flow chart showing how the three variables in this model are linked?
+
+
+## How does changing $R_0$ and $\gamma$ affect the dynamics?
+
+Go to [this website](http://scie10004.science.unimelb.edu.au/), which allows you to play around with different values of $R_0$ and $\gamma$.  The chart shows you the percentage of the population in each of the three classes across time.  The model starts with an initial (small) percentage of the poulation infected and repeatedly applies the system of differential equations to add change over time.
+
+The total percentage of the population that have been infected and recovered is given by the red curve.
+
+#### Question 2
+
+Set Initial infections to 0%.  What happens?  Why?
+
+#### Question 3
+
+Explore a range of (non-zero) percentage of initial infections.  What happens?  Does the height of the infection peak change when you do this?  Does the final percentage of recovered individuals change?  How would you summarise the effect of changing the percentage of initial infections?
+
+#### Question 4
+
+Set initial infections back to 0.1, and go play with the Recovery rate slider. This model is set up such that changing $\gamma$ also adjusts $\beta$ so that $R_0$ does not change.  If you double $\gamma$ you are also doubling $\beta$.  So this slider should be seen as changing the speed of the epidemic. You can see that playing with it just elongates, or shortens the pulse of infections.  Moving this slider is like switching between disease life histories, between those with fast transmission and recovery (e.g. the common cold) and those with slower transmission and recovery (e.g., influenza).
+
+And yes, I agree, that wasn't really a question.
+
+#### Question 5
+
+Set the recovery rate back to 0.1, and go play with the $R_0$ slider.  Now, if you change this slider, you are affecting the growth rate of the epidemic.  Choose an $R_0$ value less than 1.  What happens?  Why does this happen?
+
+#### Question 6
+
+Step through five values of $R_0$.  Look at $R_0=\{1.2, 2.2, 3.2, 4.2\}$.  For each value record the percentage of the population that has been infected by 600 days into the epidemic (value reported at the bottom of the sidebar on the webpage).  Make a quick plot of percent infected vs $R_0$.  How does increasing $R_0$ affect the percentage of the population we expect to become infected by the end of the epidemic?
+
+#### Question 7
+
+Set $\gamma$ to 0.05 and $R_0$ back to 2.  Hover your pointer over the infection curve to find the approximate time at which this curve peaks.  Then go and look at the percentage of the population that are still susceptible at this time. Is it close to 50% of the population? Switch $R_0$ to 3 and repeat the process.  Is the percentage susceptible at the peak in infections now closer to 30%?  Why can you expect this to be true?  (Small deviations from expectation can be observed, but these are due to various approximations -- rounding errors -- happening in the background of these calculations.)
+
+
+
