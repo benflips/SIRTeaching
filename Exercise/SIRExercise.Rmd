@@ -1,7 +1,7 @@
 ---
 title: "Susceptible-Infected-Recovered model exercises"
-author: "Ben Phillips"
-date: "17/08/2020"
+author: ""
+date: ""
 output: pdf_document
 urlcolor: blue
 ---
