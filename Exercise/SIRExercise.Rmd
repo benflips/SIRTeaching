@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = FALSE)
 Recall that the SIR model can be written as a system of differential equations:
 
 \begin{align}
-\frac{\partial S}{\partial t} &= -\beta I \frac{S}{N} \\
-\frac{\partial I}{\partial t} &= \beta I \frac{S}{N} - \gamma I \\
-\frac{\partial R}{\partial t} &= \gamma I, 
+\frac{d S}{d t} &= -\beta I \frac{S}{N} \\
+\frac{d I}{d t} &= \beta I \frac{S}{N} - \gamma I \\
+\frac{d R}{d t} &= \gamma I, 
 \end{align}
 
 where $S$, $I$, and $R$ each vary over time, and $N$ is the total number of people in the population: $N = S+I+R$.  Recall also that the basic reproduction number for the epidemic, $R_0 = \frac{\beta}{\gamma}$.
