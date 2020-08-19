@@ -1,7 +1,8 @@
+# Simulate the SIR model in discrete time steps
+  # code modified from script by Mick McCarthy
 runSIR <- function(R0, gamma, I0, N = 100, maxT = 600) {
-  # Simulate the SIR model in discrete time steps
   Infected <- I0  # The initial number of people infected (e.g., overseas arrivals)
-  TotalN <- N #30000000  # A total population of 30M (approx. population size of Texas or Australia)
+  TotalN <- N # Total population size
   Recovered <- 0
   Susceptible <- TotalN - Infected - Recovered
   
@@ -25,6 +26,8 @@ runSIR <- function(R0, gamma, I0, N = 100, maxT = 600) {
   out <- cbind(S=Susceptible, I=Infected, R=Recovered)
 }
 
+
+# Plot the results using plotly
 plotSIR <- function(SIRmatrix){
   pDat <- data.frame(t=0:(nrow(SIRmatrix)-1), SIRmatrix)
   
